@@ -21,7 +21,7 @@ public class Door {
       
         
     }
-    
+    // Test
     public void getPosition () {
         System.out.print(position );
         if (locked){
