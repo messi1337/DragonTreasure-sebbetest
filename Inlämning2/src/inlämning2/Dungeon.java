@@ -1,0 +1,150 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package inlämning2;
+
+/**
+ *
+ * @author ÄGARE
+ */
+public class Dungeon {
+    private Room[][] rooms = new Room [3][5];
+    private String welcomeMsg;
+    private Player playerName;
+    private Room currentRoom;
+    
+    public Dungeon(String welcomeMsg, Player playerName) {
+        //this.rooms = rooms;
+        this.welcomeMsg = welcomeMsg;
+        this.playerName = playerName;
+        creatRooms();
+    }
+
+    private void creatRooms () {
+        rooms[0][0] = new Room("Your in the entrance hall. Lucky for you there are torches hanging on the walls. Take one with you to light the way!", "es");
+        rooms[1][0] = new Room("You are in the monster room. Watch out for the monster!!! Hurry up to the next door.", "nse" );
+        rooms[2][0] = new Room("You are in the armory. Here you can find swords, crossbows and spears.", "ne");
+        rooms[0][1] = new Room("You are in the hall. From here you can go through three different doors.", "wes");
+        rooms[0][2] = new Room("You are in the dragonnest. Do not wake the dragon!!!", "ew");
+        rooms[0][3] = new Room("You are in the treasury. Woho you found the treasure. Take as much as you can carry.", "ew");
+        rooms [2][1] = new Room ("You are in the potion room. On the shell there are potions for all kinds of things. Be careful, you do not want to drink the wrong one.", "nw");
+        rooms [1][1] = new Room ("You are in the passage. From here you can go through three different doors.", "wns");
+        rooms [0][4] = new Room ("exit","w");
+    }
+    
+
+
+    public void viewDoor(){
+        System.out.println(playerName);
+    }
+    
+    
+    public void playGame() {
+        Scanner input = new Scanner(System.in);
+        Scanner insert = new Scanner (System.in);
+        int row= 0;
+        int column = 0;
+        boolean status = true;
+        char start;
+        int starter = 0;
+        
+        while (starter != 121){
+        System.out.println(welcomeMsg);
+        start = insert.next().charAt(0);
+        starter = start;
+        if (starter == 121){
+            System.out.printf("%nOh no! The entrance to the cave collapsed behind you, you have to find another way out.%nThe cave consists of different rooms, to navigate between them use the directions of south (s), north (n), west (w) and east (e).%n");
+        }}
+        
+        
+        while (status){
+        currentRoom = rooms[row][column];
+        currentRoom.doNarrative ();
+        
+        switch (input.nextLine()){
+        case "n": 
+        if (currentRoom.hasDoor("n")){
+        row--;}
+        else {System.out.println("Invalid input, please try again.");};
+        break;
+        case "s": if (currentRoom.hasDoor("s")){
+        row++;}
+        else {System.out.println("Invalid input, please try again.");};
+        break;
+        case "w": if (currentRoom.hasDoor("w")){
+        column--;}
+        else {System.out.println("Invalid input, please try again.");};
+        break;
+        case "e": 
+        if (currentRoom.hasDoor("e")){
+        column++;}
+        else {System.out.println("Invalid input, please try again.");}
+        if (row ==0 && column == 3){
+            System.out.println(
+            "                  _.--.\n"+
+            "              _.-'_:-'||\n"+
+            "          _.-'_.-::::'||\n"+
+            "     _.-:'_.-::::::'  ||\n"+
+            "   .'`-.-:::::::'     ||\n"+
+            "  /.'`;|:::::::'      ||_\n"+
+            " ||   ||::::::'      _.;._'-._\n"+
+            " ||   ||:::::'   _.-!oo @.!-._'-.\n"+
+            " \'.  ||:::::.-!() oo @!()@.-'_.||\n"+
+            "   '.'-;|:.-'.&$@.& ()$%-'o.'\\U||\n"+
+            "     `>'-.!@%()@'@_%-'_.-o _.|'||\n"+
+            "      ||-._'-.@.-'_.-' _.-o  |'||\n"+
+            "      ||=[ '-._.-\\U/.-'    o |'||\n"+
+            "      || '-.]=|| |'|      o  |'||\n"+
+            "      ||      || |'|        _| ';\n"+
+            "      ||      || |'|    _.-'_.-'\n"+
+            "      |'-._   || |'|_.-'_.-'\n"+
+            "      '-._'-.|| |' `_.-'\n"+
+            "           '-.||_/.-'\n");
+        }
+        if (row ==0 && column == 2) {
+            System.out.println(
+        "                                                  .~))>>\n"+
+        "                                                 .~)>>\n"+
+        "                                               .~))))>>>\n"+
+        "                                             .~))>>             ___\n"+
+        "                                           .~))>>)))>>      .-~))>>\n"+
+        "                                         .~)))))>>       .-~))>>)>\n"+
+        "                                       .~)))>>))))>>  .-~)>>)>\n"+
+        "                   )                 .~))>>))))>>  .-~)))))>>)>\n"+
+        "                ( )@@*)             //)>))))))  .-~))))>>)>\n"+
+        "              ).@(@@               //))>>))) .-~))>>)))))>>)>\n"+
+        "            (( @.@).              //))))) .-~)>>)))))>>)>\n"+
+        "          ))  )@@*.@@ )          //)>))) //))))))>>))))>>)>\n"+
+        "       ((  ((@@@.@@             |/))))) //)))))>>)))>>)>\n"+
+        "      )) @@*. )@@ )   (\\_(\\-\\b  |))>)) //)))>>)))))))>>)>\n"+
+        "    (( @@@(.@(@ .    _/`-`  ~|b |>))) //)>>)))))))>>)>\n"+
+        "     )* @@@ )@*     (@)  (@) /\\b|))) //))))))>>))))>>\n"+
+        "   (( @. )@( @ .   _/  /    /  \\b)) //))>>)))))>>>_._\n"+
+        "    )@@ (@@*)@@.  (6///6)- / ^  \\b)//))))))>>)))>>   ~~-.\n"+
+        " ( @jgs@@. @@@.*@_ VvvvvV//  ^  \\b/)>>))))>>      _.     `bb\n"+
+        " ((@@ @@@*.(@@ . - | o |' \\ (  ^   \\b)))>>        .'       b`,\n"+
+        "   ((@@).*@@ )@ )   \\^^^/  ((   ^  ~)_        \\  /           b `,\n"+
+        "     (@@. (@@ ).     `-'   (((   ^    `\\ \\ \\ \\ \\|             b  `.\n"+
+        "       (*.@*              / ((((        \\| | |  \\       .       b `.\n"+
+        "                         / / (((((  \\    \\ /  _.-~\\     Y,      b  ;\n"+
+        "                        / / / (((((( \\    \\.-~   _.`\" _.-~`,    b  ;\n"+
+        "                       /   /   `(((((()    )    (((((~      `,  b  ;\n"+
+        "                     _/  _/      `\"\"\"/   /'                  ; b   ;\n"+
+        "                 _.-~_.-~           /  /'                _.'~bb _.'\n"+
+        "               ((((~~              / /'              _.'~bb.--~\n"+
+        "                                  ((((          __.-~bb.-~\n"+
+        "                                              .'  b .~~\n"+
+        "                                              :bb ,' \n"+
+        "                                              ~~~~\n");  
+        }
+        if (row == 0 && column == 4){
+        System.out.printf("%nYou made it! You have reached the exit, good job!%n%n");
+        status = false;};
+        break;
+        default: System.out.println("Invalid input, please try again.");
+        }
+        }
+      
+    }
+}
